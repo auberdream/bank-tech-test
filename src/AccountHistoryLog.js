@@ -5,8 +5,8 @@
     this.log = []
   }
 
-  AccountHistoryLog.prototype.store = function (transaction) {
-    this.log.push(transaction)
+  AccountHistoryLog.prototype.storeDebit = function (amount, date = new Date(), balance) {
+    this.log.push({date: date, credit: amount, debit: "-", balance: balance})
   };
 
   exports.AccountHistoryLog = AccountHistoryLog

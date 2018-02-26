@@ -1,8 +1,9 @@
 'use strict';
 
 (function(exports) {
-  function Account() {
+  function Account(accountHistoryLog = new AccountHistoryLog()) {
     this.balance = INITIAL_BALANCE;
+    this.accountHistoryLog = accountHistoryLog
   }
 
   const INITIAL_BALANCE = 0

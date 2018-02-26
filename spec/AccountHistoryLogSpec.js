@@ -7,12 +7,11 @@ describe("AccountHistoryLog", function() {
     accountHistoryLog = new AccountHistoryLog();
   });
 
-  describe("store", function() {
+  describe("storeDebit", function() {
 
-    it("pushes the argument into the initialized empty array", function() {
-      var transaction = {date: "01-01-01", credit: 1000, debit: "-", balance: 1500}
-      accountHistoryLog.store(transaction);
-      expect(accountHistoryLog.log).toEqual([transaction])
+    it("pushes the transaction into an initialized empty array", function() {
+      accountHistoryLog.storeDebit(100, "11-01-18", 100);
+      expect(accountHistoryLog.log).toEqual([{date: "11-01-18", credit: 100, debit: "-", balance: 100}])
     });
 
   });
