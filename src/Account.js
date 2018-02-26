@@ -10,10 +10,12 @@
 
   Account.prototype.deposit = function (amount) {
     this._increaseBalance(amount)
+    this._storeCredit(amount, this.balance)
   };
 
   Account.prototype.withdraw = function (amount) {
     this._decreaseBalance(amount)
+    this._storeDebit(amount, this.balance)
   };
 
   // private
@@ -24,6 +26,14 @@
 
   Account.prototype._decreaseBalance = function (amount) {
     this.balance -= amount;
+  };
+
+  Account.prototype._storeCredit = function (amount, balance) {
+    this.accountHistoryLog.storeCredit(amount, balance)
+  };
+
+  Account.prototype._storeDebit = function (amount, balance) {
+    this.accountHistoryLog.storeDebit(amount, balance)
   };
 
   exports.Account = Account;
