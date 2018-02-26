@@ -1,9 +1,10 @@
 'use strict';
 
 (function(exports) {
-  function Account(accountHistoryLog = new AccountHistoryLog()) {
+  function Account(accountHistoryLog = new AccountHistoryLog(), accountHistoryPrinter = new AccountHistoryPrinter()) {
     this.balance = INITIAL_BALANCE;
-    this.accountHistoryLog = accountHistoryLog
+    this.accountHistoryLog = accountHistoryLog;
+    this.accountHistoryPrinter = accountHistoryPrinter
   }
 
   const INITIAL_BALANCE = 0
@@ -16,6 +17,10 @@
   Account.prototype.withdraw = function (amount) {
     this._decreaseBalance(amount)
     this._storeDebit(amount, this.balance)
+  };
+
+  Account.prototype.statement = function (history = this.accountHistoryLog.log) {
+    this.accountHistoryPrinter.print(history)
   };
 
   // private
