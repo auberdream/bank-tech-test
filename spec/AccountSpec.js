@@ -20,4 +20,14 @@ describe("Account", function() {
 
   });
 
+  describe("Withdraw", function() {
+
+    it("decreases the account balance by the amount specified", function() {
+      account.deposit(100);
+      account.withdraw(20);
+      expect(account.balance).toEqual(80);
+    });
+
+  });
+
 });
