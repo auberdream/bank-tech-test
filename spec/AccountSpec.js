@@ -28,6 +28,10 @@ describe("Account", function() {
       expect(account.balance).toEqual(80);
     });
 
+    it("raises error if withdrawal would result in balance less than 0", function() {
+      expect(function() { account.withdraw(1) }).toThrow(new Error("Insufficient funds"))
+    });
+
   });
 
 });
