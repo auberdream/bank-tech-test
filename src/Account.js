@@ -8,12 +8,22 @@
   const INITIAL_BALANCE = 0
 
   Account.prototype.deposit = function (amount) {
-    this.balance += amount
+    this._increaseBalance(amount)
   };
 
   Account.prototype.withdraw = function (amount) {
-    this.balance -= amount
+    this._decreaseBalance(amount)
   };
 
-  exports.Account = Account
+  // private
+
+  Account.prototype._increaseBalance = function (amount) {
+    this.balance += amount;
+  };
+
+  Account.prototype._decreaseBalance = function (amount) {
+    this.balance -= amount;
+  };
+
+  exports.Account = Account;
 })(this);
