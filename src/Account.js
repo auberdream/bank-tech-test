@@ -30,6 +30,9 @@
   };
 
   Account.prototype._decreaseBalance = function (amount) {
+    if (this._isOverdrawn(amount)) {
+      throw new Error('Insufficient funds')
+    };
     this.balance -= amount;
   };
 
@@ -39,6 +42,10 @@
 
   Account.prototype._storeDebit = function (amount, balance) {
     this.accountHistoryLog.storeDebit(amount, balance)
+  };
+
+  Account.prototype._isOverdrawn = function (amount) {
+    return 0 > (this.balance - amount)
   };
 
   exports.Account = Account;
